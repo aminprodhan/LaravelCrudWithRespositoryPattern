@@ -15,7 +15,7 @@ class ReservationController extends Controller
         $this->customerBookingRepository=$customerBookingRepository;
     }
     public function handleStore(Request $request){
-        $response=$this->customerBookingRepository->createOrUpdate($request->all());
+        $response=$this->customerBookingRepository->createOrUpdate($request->all()); //only input
         return response()->json($response['data'],$response['status']);
     }
 }
