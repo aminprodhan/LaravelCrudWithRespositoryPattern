@@ -30,8 +30,7 @@ use App\Interfaces\Customer\CustomerBookingRepositoryInterface;
         }
         public function list(){
             return Reservation::
-                select("name","contact_no","address","check_in_date","check_out_date","room_id","user_id")
-                ->with("customer","room")
+                with("customer","room")
                 ->orderBy("id","desc")
                 ->get();
         }

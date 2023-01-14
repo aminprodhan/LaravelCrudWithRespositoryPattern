@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text("address")->nullable();
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("room_id");
+            $table->tinyInteger("approval_status")->default(2)->comment("1=approve,2=pending,3=reject");
             $table->timestamps();
         });
     }
