@@ -30,6 +30,10 @@
             );
             return 1;
         }
+        public function getCustomerDeviceToken(){
+            $auth=CommonTrait::sanctumAuth();
+            return CustomerDeviceKey::where("customer_id",$auth->id)->get()->pluck('device_key')->all();
+        }
         public function logout()
         {
 

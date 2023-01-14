@@ -9,6 +9,12 @@ class Reservation extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function customer(){
+        return $this->belongsTo(Customer::class,"user_id");
+    }
+    public function room(){
+        return $this->belongsTo(Room::class,"room_id");
+    }
     public function setCheckInDateAttribute($value)
     {
         $this->attributes['check_in_date'] = date('Y-m-d',strtotime($value));

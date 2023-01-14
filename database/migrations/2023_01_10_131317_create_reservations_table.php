@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->date("check_in_date");
-            $table->date("checkout_date");
+            $table->date("check_out_date");
             $table->string("name");
             $table->string("contact_no");
             $table->text("address")->nullable();

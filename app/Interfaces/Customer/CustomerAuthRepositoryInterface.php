@@ -3,6 +3,7 @@
     interface CustomerAuthRepositoryInterface{
         public function login();
         public function deviceTokenUpdateOrCreate();
+        public function getCustomerDeviceToken();
         public function logout();
     }
 ?>

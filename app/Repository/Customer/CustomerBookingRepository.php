@@ -10,22 +10,30 @@ use App\Interfaces\Customer\CustomerBookingRepositoryInterface;
         public function createOrUpdate(array $data=[]){
 
             $response['status']=200;$response['data']['message']="Something went wrong!!";
-            // try{
-                Reservation::updateOrCreate(
+            try{
+                $row=Reservation::updateOrCreate(
                     ["id" => $data['updateId']],
                     $data['data']
                 );
+                $response['insert_row']=$this->find($row->id);
                 $response['data']['list']=$this->list();
                 $response['data']['message']="Success";
-            // }
-            // catch(\Throwable $error){
-            //     $response['status']=500;
-            //     $response['data']['message']=$error;
-            // }
+            }
+            catch(\Throwable $error){
+                $response['status']=500;
+                $response['data']['message']=$error;
+            }
             return $response;
         }
+        public function find($id){
+            return Reservation::with("room","customer")->find($id);
+        }
         public function list(){
-            return Reservation::get();
+            return Reservation::
+                select("name","contact_no","address","check_in_date","check_out_date","room_id","user_id")
+                ->with("customer","room")
+                ->orderBy("id","desc")
+                ->get();
         }
     }
 ?>

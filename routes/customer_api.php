@@ -9,5 +9,6 @@ use Illuminate\Support\Facades\Route;
     Route::middleware('auth:sanctum')->post('update-device-key',[CustomerController::class,'handleDeviceKeyUpdateOrCreate']);
     Route::middleware('auth:sanctum')->prefix("reservation")->namespace("Customer")->group(function(){
         Route::post('store',[ReservationController::class,'handleStore']);
+        Route::post('index',[ReservationController::class,'handleIndex']);
     });
 ?>
