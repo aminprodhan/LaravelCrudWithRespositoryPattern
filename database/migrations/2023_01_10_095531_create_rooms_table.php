@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer("maximum_occupancy")->nullable();
             $table->decimal("price",10,2);
             $table->text("amenities")->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

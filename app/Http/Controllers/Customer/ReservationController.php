@@ -23,7 +23,7 @@ class ReservationController extends Controller
         $this->customerAuthRepository=$customerAuthRepository;
     }
     public function handleIndex(Request $request){
-        $response=$this->customerBookingRepository->list($request->all()); //only input
+        $response=$this->customerBookingRepository->listLogInUser($request->all()); //only input
         return response()->json(["list" => $response],200);
     }
     public function handleStore(Request $request){
