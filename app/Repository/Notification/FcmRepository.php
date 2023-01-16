@@ -10,7 +10,9 @@
             $serverKey = 'AAAAuUkQJMo:APA91bHw6fyxj7BEBs9BGYrxkr_iBe9jbYnULr8obbV1Av5en9zUdY7fMsRvoZbBFbOiuTD-Rrou9yABWUvVtIbuXZHIJHp1WpV8FLHePyooWFNFyrj8PGsKbUCtAax0fVCf4CuK4NUP';
             $data = [
                 "registration_ids" => $device_ids,
-                "notification" => $body
+                //"notification" => "test",
+                "data" => $body,
+                "collapse_key" => "test-".time().rand(1,100)
             ];
 
             $headers = [

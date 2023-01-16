@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->text("description")->nullable();
-            $table->string("photo");
+            $table->string("photo")->nullable();
             $table->integer("maximum_occupancy")->nullable();
             $table->decimal("price",10,2);
             $table->text("amenities")->nullable();

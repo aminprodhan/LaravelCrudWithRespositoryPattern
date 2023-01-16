@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('login',[UserController::class,'login']);
     Route::middleware('auth:admins')->prefix("reservation")->namespace("User")->group(function(){
         Route::post('index',[UserReservationController::class,'handleIndex']);
+        Route::post('status-change',[UserReservationController::class,'handleStatusChange']);
     });
     Route::middleware('auth:admins')->post('update-device-key',[UserController::class,'handleDeviceKeyUpdateOrCreate']);
     Route::middleware('auth:admins')->prefix("room")->namespace("User")->group(function(){

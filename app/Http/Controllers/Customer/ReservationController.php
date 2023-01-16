@@ -32,11 +32,11 @@ class ReservationController extends Controller
             $deviceKeys=$this->customerAuthRepository->getAdminsDeviceToken();
             $message="New Booking Requested From ".$response['insert_row']->customer->name.'and Room is:'.$response['insert_row']->room->name;
             $message_body=[
-                    "title" => "Booking Request",
+                    "title" => "Booking Request 444",
                     "body" => $message,
                 ];
-            $this->fcmRepository->sendNotification($deviceKeys,$message_body);
-            $response['device_token']=$deviceKeys;
+            $res=$this->fcmRepository->sendNotification($deviceKeys,$message_body);
+            $response['device_token']=$res;
         }
         return response()->json($response,$response['status']);
     }

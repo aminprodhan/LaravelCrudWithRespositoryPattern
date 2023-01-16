@@ -26,6 +26,12 @@
         public function find($id){
             return Reservation::with("room","customer")->find($id);
         }
+        public function statusChange(array $data=[]){
+            $info=Reservation::with("customer","room")->find($data['id']);
+            $info->approval_status=$data['status_id'];
+            $info->save();
+            return $info;
+        }
         public function list(){
             return Reservation::
                 with("customer","room")

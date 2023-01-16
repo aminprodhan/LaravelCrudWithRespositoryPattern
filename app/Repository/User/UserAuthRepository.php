@@ -39,7 +39,7 @@
         }
         public function getTokenByCustomer($customer_id){
 
-            $tokens=DeviceToken::where("customer_id",$customer_id)
+            $tokens=DeviceToken::where("userable_id",$customer_id)
                 ->where("userable_type",'App\Models\Customer')
                 ->get();
             return $tokens->pluck('token')->all();
