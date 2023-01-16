@@ -11,4 +11,8 @@ class Customer extends Authenticatable
 {
     protected $guarded = [];
     use HasApiTokens, HasFactory, Notifiable;
+    public function tokens()
+    {
+        return $this->morphMany(DeviceToken::class, 'user_type','user_id');
+    }
 }
