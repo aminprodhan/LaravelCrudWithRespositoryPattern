@@ -16,8 +16,8 @@ class CreateDeviceTokensTable extends Migration
         Schema::create('device_tokens', function (Blueprint $table) {
             $table->id();
             $table->text("token");
-            $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("user_type");
+            $table->unsignedBigInteger("userable_id");
+            $table->string("userable_type");
             $table->timestamps();
         });
     }

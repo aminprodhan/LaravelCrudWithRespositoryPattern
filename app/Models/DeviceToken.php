@@ -9,4 +9,8 @@ class DeviceToken extends Model
 {
     protected $guarded = [];
     use HasFactory;
+    public function userable()
+    {
+        return $this->morphTo();
+    }
 }

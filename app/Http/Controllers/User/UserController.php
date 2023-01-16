@@ -19,6 +19,7 @@ class UserController extends Controller
         return response()->json($res['data'],$res['status']);
     }
     public function handleDeviceKeyUpdateOrCreate(Request $request){
-        $this->userAuthRepository->deviceTokenUpdateOrCreate($request->all());
+        $res=$this->userAuthRepository->deviceTokenUpdateOrCreate($request->all());
+        return response()->json($res);
     }
 }

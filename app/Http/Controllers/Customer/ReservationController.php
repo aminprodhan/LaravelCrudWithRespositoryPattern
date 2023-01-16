@@ -29,13 +29,14 @@ class ReservationController extends Controller
     public function handleStore(Request $request){
         $response=$this->customerBookingRepository->createOrUpdate($request->all()); //only input
         if($response['status'] == 200){
-            $deviceKeys=$this->customerAuthRepository->getCustomerDeviceToken();
+            $deviceKeys=$this->customerAuthRepository->getAdminsDeviceToken();
             $message="New Booking Requested From ".$response['insert_row']->customer->name.'and Room is:'.$response['insert_row']->room->name;
             $message_body=[
                     "title" => "Booking Request",
                     "body" => $message,
                 ];
             $this->fcmRepository->sendNotification($deviceKeys,$message_body);
+            $response['device_token']=$deviceKeys;
         }
         return response()->json($response,$response['status']);
     }

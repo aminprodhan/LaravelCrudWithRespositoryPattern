@@ -26,7 +26,10 @@ class Room extends Model
     {
         if(!empty($value)){
             $exp=explode("/",$value);
-            $this->attributes['photo'] =$exp[6];
+            if(!empty($exp[6]))
+                $this->attributes['photo'] =$exp[6];
+            else
+                $this->attributes['photo'] =$value;
         }
     }
 }

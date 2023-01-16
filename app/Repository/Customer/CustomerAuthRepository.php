@@ -2,7 +2,7 @@
     namespace App\Repository\Customer;
     use App\Interfaces\Shared\AuthInterface;
     use App\Models\Customer;
-    use App\Models\Customer\CustomerDeviceKey;
+    use App\Models\DeviceToken;
     use Illuminate\Support\Facades\Hash;
     use App\Traits\CommonTrait;
 
@@ -23,16 +23,22 @@
             return $res;
         }
         public function deviceTokenUpdateOrCreate(array $data=[]){
-
-            CustomerDeviceKey::updateOrCreate(
-                ['customer_id' => CommonTrait::sanctumAuth()->id,"device_key" => $data['device_key']],
-                ['customer_id' => CommonTrait::sanctumAuth()->id,"device_key" => $data['device_key']],
+            $find=Customer::find(CommonTrait::sanctumAuth()->id);
+            $data_insert=[
+                "token" => $data['device_key'],
+                "userable_id" => $find->id,
+                "userable_type" => get_class($find)
+            ];
+            DeviceToken::updateOrCreate(
+                ["userable_type" => $data_insert['userable_type'],'userable_id' => $find->id,"token" => $data['device_key']],
+                $data_insert,
             );
-            return 1;
+            return $find->id;
         }
-        public function getCustomerDeviceToken(){
-            $auth=CommonTrait::sanctumAuth();
-            return CustomerDeviceKey::where("customer_id",$auth->id)->get()->pluck('device_key')->all();
+        public function getAdminsDeviceToken(){
+
+            $tokens=DeviceToken::where("userable_type",'App\Models\User')->get();
+            return $tokens->pluck('token')->all();
         }
         public function logout()
         {

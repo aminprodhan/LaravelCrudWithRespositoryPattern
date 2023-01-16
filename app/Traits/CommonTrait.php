@@ -1,9 +1,14 @@
 <?php
     namespace App\Traits;
     use App\Models\Amenitie;
+use Illuminate\Support\Facades\Auth;
+
     trait CommonTrait{
         public static function sanctumAuth(){
-            return auth('sanctum')->user();
+            if(auth('admins')->check())
+                return auth('admins')->user();
+
+            return auth('customer')->user();
         }
         public static function getAmenities(){
             return Amenitie::select("name as label","name as value")->where("status",1)->get();

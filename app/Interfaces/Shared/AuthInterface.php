@@ -3,7 +3,6 @@
     interface AuthInterface{
         public function login();
         public function deviceTokenUpdateOrCreate();
-        public function getCustomerDeviceToken();
         public function logout();
     }
 ?>

@@ -22,7 +22,7 @@ return new class extends Migration
         });
         DB::table('amenities')->insert([
             ['name' => 'wifi'],
-            ['name' => '“breakfast”,'],
+            ['name' => 'breakfast'],
             ['name' => 'ac']]);
     }
 

@@ -41,8 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function tokens()
+    public function getDeviceToken()
     {
-        return $this->morphMany(DeviceToken::class, 'user_type','user_id');
+        return $this->morphMany(DeviceToken::class,"userable");
     }
 }
